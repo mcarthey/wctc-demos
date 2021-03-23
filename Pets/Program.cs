@@ -7,17 +7,17 @@ namespace Pets
     {
         static void Main(string[] args)
         {
-            // ask user to select pet
-            var dog = new Dogs();
-            var cat = new Cats();
-            var bird = new Birds();
-
-            // find pet with specific name
-            var ourDog = dog.Names.Find(petname => petname.Equals("Spot"));
-            var ourCat = cat.Names.Find(cat.FindOurPet);
+            // open the pet store
+            var petStore = new PetStore();
+            petStore.AdoptPet(new Dog() {Name="Spot", Owner="Jim"});
+            petStore.AdoptPet(new Dog() {Name="Rover", Owner="Bob"});
+            petStore.AdoptPet(new Cat() {Name="Fluffy", Owner="Susan"});
+            petStore.AdoptPet(new Bird() {Name="Tweety", Owner="Elmer"});
             
-            System.Console.WriteLine($"Our pet name is {ourDog}");
-            System.Console.WriteLine($"Our pet name is {ourCat}");
+            // find pet with specific name
+            var pet = petStore.Locate("Spot");
+            System.Console.WriteLine($"Our pet name is {pet.Name}");
+            System.Console.WriteLine($"Our pet owner is {pet.Owner}");
        }
     }
 }
