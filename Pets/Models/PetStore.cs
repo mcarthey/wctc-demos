@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pets.Models
 {
@@ -16,6 +17,17 @@ namespace Pets.Models
         }
         public PetModel Locate(string petname) {
             return _pets.Find(pet=>pet.Name.Equals(petname));
+        }
+
+        public PetModel Search(string petname) 
+        {
+            var foundPets = _pets.Where(pet => pet.Name.Equals(petname));
+            if (foundPets.Count() > 1)
+            {
+                var pet = foundPets.ToList().Find(pet=>pet.Owner.Equals("Michael"));
+                return pet; 
+            }
+            return null;
         }
     }
 }
